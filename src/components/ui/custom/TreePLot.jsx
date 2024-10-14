@@ -63,7 +63,7 @@ const TreePlot = ({ data }) => {
 
       const nodeEnter = node.enter().append('g')
         .attr('class', 'node')
-        .attr('transform', d => `translate(${source.y0},${source.x0})`)
+        .attr('transform', `translate(${source.y0},${source.x0})`)
         .on('click', click);
 
       // Set color based on node value
@@ -87,7 +87,7 @@ const TreePlot = ({ data }) => {
 
       // Exit nodes
       const nodeExit = node.exit().transition().duration(duration)
-        .attr('transform', d => `translate(${source.y},${source.x})`)
+        .attr('transform', `translate(${source.y},${source.x})`)
         .remove();
 
       nodeExit.select('circle').attr('r', 1e-6);
@@ -99,7 +99,7 @@ const TreePlot = ({ data }) => {
 
       const linkEnter = link.enter().insert('path', 'g')
         .attr('class', 'link')
-        .attr('d', d => {
+        .attr('d', () => {
           const o = { x: source.x0, y: source.y0 };
           return `M${o.y},${o.x}L${o.y},${o.x}`;
         });
@@ -111,7 +111,7 @@ const TreePlot = ({ data }) => {
         .style('stroke-width', '2px');
 
       link.exit().transition().duration(duration)
-        .attr('d', d => {
+        .attr('d', () => {
           const o = { x: source.x, y: source.y };
           return `M${o.y},${o.x}L${o.y},${o.x}`;
         })

@@ -1,6 +1,4 @@
 "use client";
-
-import * as d3 from "d3";
 import TreePlot from "@/components/ui/custom/TreePLot";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +7,6 @@ import { useState } from "react";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -25,7 +22,8 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 export default function Home() {
   const [nodeData, setNodeData] = useState<number | null>(null);
   const [nodes, setNodes] = useState<number[]>([]);
-  const [hierarchy, setHierarchy] = useState<{name : any, children : any[]} | null>(null);
+  type Hierarchy = { name: number; children: Hierarchy[] };
+  const [hierarchy, setHierarchy] = useState<Hierarchy | null>(null);
 
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
